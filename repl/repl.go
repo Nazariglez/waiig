@@ -6,9 +6,9 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"waiig/evaluator"
 	"waiig/lexer"
 	"waiig/parser"
-	"waiig/evaluator"
 )
 
 const PROMPT = ">> "
