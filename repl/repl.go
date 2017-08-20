@@ -8,8 +8,8 @@ import (
 	"io"
 	"waiig/evaluator"
 	"waiig/lexer"
-	"waiig/parser"
 	"waiig/object"
+	"waiig/parser"
 )
 
 const PROMPT = ">> "
