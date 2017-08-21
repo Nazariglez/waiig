@@ -315,3 +315,15 @@ func TestClosures(t *testing.T) {
 
 	testIntegerObject(t, testEval(input), 4)
 }
+
+func BenchmarkEval(b *testing.B) {
+	input := `
+		let multi = fn(a,b){ a*b; };
+
+		let a = multi(1000,5000);
+	`
+
+	for i := 0; i < b.N; i++ {
+		testEval(input)
+	}
+}
