@@ -5,9 +5,9 @@ package object
 import (
 	"bytes"
 	"fmt"
+	"hash/fnv"
 	"strings"
 	"waiig/ast"
-	"hash/fnv"
 )
 
 type ObjectType string
@@ -23,7 +23,7 @@ const (
 	STRING_OBJ       = "STRING"
 	BUILTIN_OBJ      = "BUILTIN"
 	ARRAY_OBJ        = "ARRAY"
-	HASH_OBJ = "HASH"
+	HASH_OBJ         = "HASH"
 )
 
 type Object interface {
@@ -172,7 +172,7 @@ func (ao *Array) Inspect() string {
 }
 
 type HashKey struct {
-	Type ObjectType
+	Type  ObjectType
 	Value uint64
 }
 
@@ -199,9 +199,8 @@ func (s *String) HashKey() HashKey {
 	return HashKey{Type: s.Type(), Value: h.Sum64()}
 }
 
-
 type HashPair struct {
-	Key Object
+	Key   Object
 	Value Object
 }
 
@@ -231,4 +230,3 @@ func (h *Hash) Inspect() string {
 type Hashable interface {
 	HashKey() HashKey
 }
-
