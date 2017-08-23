@@ -2,7 +2,11 @@
 
 package evaluator
 
-import "waiig/object"
+import (
+	"fmt"
+	"strings"
+	"waiig/object"
+)
 
 var builtins = map[string]*object.Builtin{
 	"len": &object.Builtin{
@@ -20,6 +24,19 @@ var builtins = map[string]*object.Builtin{
 	"push": &object.Builtin{
 		Fn: fnPushBuiltin,
 	},
+	"puts": &object.Builtin{
+		Fn: fnPutsBuiltin,
+	},
+}
+
+func fnPutsBuiltin(args ...object.Object) object.Object {
+	text := []string{}
+	for _, arg := range args {
+		text = append(text, arg.Inspect())
+	}
+
+	fmt.Println(strings.Join(text, " "))
+	return NULL
 }
 
 func fnLenBuiltin(args ...object.Object) object.Object {
